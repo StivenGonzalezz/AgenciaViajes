@@ -1,10 +1,12 @@
 package model;
 
 import java.io.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Reserva {
+public class Reserva implements Serializable {
     private int id;
     private LocalDate fecha_solicitud;
     private LocalDate fecha_viaje;
@@ -111,40 +113,16 @@ public class Reserva {
     }
 
     //-----------------------------------------MÉTODOS-----------------------------------------
-
-    /**
-     * Método que permite registrar los datos de una reserva en un archivo llamado Reservas
-     * @param nombreArchivo
-     * @param contenido
-     */
-    public static void registrarReserva(String nombreArchivo, ArrayList<Reserva> contenido){
-
-        File archivo = new File(nombreArchivo);
-
-        try{
-            PrintWriter salida = new PrintWriter(new FileWriter(archivo, true)); //Permite seguir escribiendo en el mismo archivo
-            salida.print(contenido);
-            salida.close();
-        }catch (FileNotFoundException e){
-            e.printStackTrace(System.out);
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
-        }
-
-    }
-
-    /**
-     * Método que permite eliminar los datos de un archivo
-     * @param nombre_archivo
-     */
-    public static void eliminarReserva(String nombre_archivo) {
-        File archivo = new File(nombre_archivo);
-
-        if (archivo.exists() == true) { //Comprueba que exista en el archivo
-            archivo.delete();           //Elimina del archivo
-            System.out.println("Se cancelo la reserva");
-        } else {
-            System.out.println("La reserva no existe");
-        }
+    @Override
+    public String toString(){
+        return "\n" +
+                "Id reserva: "+this.id+"\n" +
+                "Fecha de solicitud: "+this.fecha_solicitud+"\n" +
+                "Fecha de viaje: "+this.fecha_viaje+"\n" +
+                "Nombre de cliente: "+this.cliente+"\n" +
+                "Cantidad de personas: "+this.cantidad_personas+"\n" +
+                "Paquete turistico: "+this.paquete_turistico+"\n" +
+                "Guía turistico: "+this.paquete_turistico+"\n"+
+                "Estado de reserva: "+this.estado_reserva;
     }
 }
