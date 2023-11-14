@@ -23,7 +23,7 @@ public abstract class Persona {
     }
 
     public String toString(){
-        return "";
+        return "Nombre: "+this.nombre;
     }
 
 }

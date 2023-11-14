@@ -1,0 +1,9 @@
+
+Id reserva: 100
+Fecha de solicitud: 2025-07-23
+Fecha de viaje: 2023-07-26
+Nombre de cliente: null
+Cantidad de personas: 0
+Paquete turistico: null
+Guía turistico: null
+Estado de reserva: null

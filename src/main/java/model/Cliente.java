@@ -1,8 +1,11 @@
 package model;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
+import static model.Serializable.listarDatos;
+import static model.Serializable.registrarDatos;
 
 public class Cliente extends Persona{
     private String email;
@@ -54,10 +57,21 @@ public class Cliente extends Persona{
 
     //-----------------------------MÉTODOS-----------------------------
 
+    /**
+     * Método que permite crear una reserva
+     * @param id
+     * @param fecha_solicitud
+     * @param fecha_viaje
+     * @param cliente
+     * @param cantidad_personas
+     * @param paquete_turistico
+     * @param guia_turistico
+     * @param estado_reserva
+     */
     public void crearReservas(int id, LocalDate fecha_solicitud, LocalDate fecha_viaje, Cliente cliente, int cantidad_personas, PaqueteTuristico paquete_turistico,
         GuiaTuristico guia_turistico, Reserva estado_reserva){
 
-        int id_reserva = (int) Math.random()*1000+1; //Número id de la reserva
+        int id_reserva = (int) Math.random()*1000+100; //Número id de la reserva
         Reserva reserva = new Reserva();
 
         reserva.setId(id_reserva);
@@ -70,28 +84,59 @@ public class Cliente extends Persona{
         reserva.setEstado_reserva(estado_reserva.getEstado_reserva());
 
         reservas.add(reserva);
-        System.out.println("Reservado éxitosamente");
-
-        Reserva.registrarReserva("archivos\\Reservas.txt", reservas);
-    }
-
-    public void eliminarReservas(int id, LocalDate fecha_solicitud){
-        int j=0;
-        if(j == reservas.size()){
-
-        }else {
-            if (id == reservas.get(j).getId()){
-                if(!reservas.isEmpty()){
-                    Reserva.eliminarReserva("archivos\\Reservas.txt");
-                }
-            }
+        try {
+            registrarDatos("archivos\\Reservas.txt", reservas, true);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
         }
+        System.out.println("Reservado éxitosamente");
+    }
 
+    /**
+     * Método que invoca la serialización para mostrar las reservas
+     * @throws IOException
+     */
+    public void listarReserva() throws IOException{
+        System.out.println("\t LISTADO DE RESERVAS");
+        listarDatos("archivos\\Reservas.txt");
 
     }
 
+    public void crearReservas(LocalDate fecha_solicitud, LocalDate fecha_viaje){
 
-    public void listarReservas(){
+        int id_reserva = (int) Math.random()*1000+100; //Genera número aleatorio para el id de la reserva
 
+        Reserva reserva = new Reserva();
+
+        reserva.setId(id_reserva);
+        reserva.setFecha_solicitud(fecha_solicitud);
+        reserva.setFecha_viaje(fecha_viaje);
+        reservas.add(reserva);
+        try {
+            registrarDatos("archivos\\Reservas.txt", reservas, true);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Reservado éxitosamente, su código de reserva es "+id_reserva);
+    }
+
+    /**
+     * Método que permite eliminar reservas
+     * @param id
+     */
+    public void eliminarReservas(int id){
+
+        /*int contador = 0;
+        if(reservas.get(contador).getId() == id){
+            reservas.remove(reservas.get(contador)); //Elimino objeto del arraylist
+            Reserva.eliminarReserva("archivos\\Reservas.txt", reservas);
+        }else {
+           contador = Integer.parseInt(1+eliminarReservas(id));
+        }*/
+        //return Reserva.eliminarReserva("archivos\\Reservas.txt", reservas);
+    }
+
+    public String toString(){
+        return "";
     }
 }
