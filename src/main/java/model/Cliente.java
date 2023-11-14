@@ -23,7 +23,7 @@ public class Cliente extends Persona{
      * @param direccion
      */
     public Cliente (int id, String nombre, String email, String telefono, String direccion){
-        super();
+        super(id, nombre);
         this.email = email;
         this.telefono = telefono;
         this.direccion = direccion;
@@ -136,7 +136,12 @@ public class Cliente extends Persona{
         //return Reserva.eliminarReserva("archivos\\Reservas.txt", reservas);
     }
 
+    @Override
     public String toString(){
-        return "";
+        return  "Id: "+getId()+"\n"+
+                "Nombre: "+getNombre()+"\n"+
+                "Email: "+this.email+"\n" +
+                "Telefono: "+this.telefono+"\n" +
+                "Dirección: "+this.direccion;
     }
 }

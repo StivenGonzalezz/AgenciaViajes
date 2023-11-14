@@ -12,7 +12,7 @@ public class GuiaTuristico extends Persona{
      * @param experiencia
      */
     public GuiaTuristico(int id, String nombre, int lenguajes, double experiencia){
-        super();
+        super(id, nombre);
         this.lenguajes = lenguajes;
         this.experiencia = experiencia;
     }
@@ -32,5 +32,10 @@ public class GuiaTuristico extends Persona{
 
     public void setExperiencia(double experiencia) {
         this.experiencia = experiencia;
+    }
+
+    @Override
+    public String toString() {
+        return null;
     }
 }
