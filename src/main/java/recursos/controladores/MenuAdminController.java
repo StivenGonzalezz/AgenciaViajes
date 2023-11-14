@@ -6,11 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class MenuController {
+public class MenuAdminController {
 
     @FXML
     private AnchorPane ap;
@@ -20,17 +20,22 @@ public class MenuController {
 
     @FXML
     void destinos(MouseEvent event) {
-    cargarPagina("destinos-view");
+        cargarPagina("destinosadmin-view");
     }
 
     @FXML
-    void miperfil(MouseEvent event) {
-        cargarPagina("miperfil-view");
+    void guias(MouseEvent event) {
+        cargarPagina("guiasadmin-view");
+    }
+
+    @FXML
+    void inicio(MouseEvent event) {
+        bp.setCenter(ap);
     }
 
     @FXML
     void paquetes(MouseEvent event) {
-    bp.setCenter(ap);
+        cargarPagina("paquetesadmin-view");
     }
 
     private void cargarPagina(String pagina){

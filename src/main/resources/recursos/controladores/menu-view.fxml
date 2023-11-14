@@ -11,7 +11,7 @@
 
 <BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recursos.controladores.MenuController">
    <left>
-      <VBox prefHeight="400.0" prefWidth="133.0" style="-fx-background-color: #0D1824;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="690.0" prefWidth="133.0" style="-fx-background-color: #0D1824;" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onMouseClicked="#paquetes" prefHeight="45.0" prefWidth="147.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Paquetes" textFill="WHITE">
                <font>

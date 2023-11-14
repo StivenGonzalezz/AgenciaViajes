@@ -9,30 +9,36 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="337.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recursos.controladores.InicioController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recursos.controladores.InicioController">
   <tabs>
     <Tab text="Inicio sesion">
          <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9DABB6;">
                <children>
-                  <Label layoutX="21.0" layoutY="114.0" text="Cedula">
+                  <Label layoutX="417.0" layoutY="224.0" text="Identifcacion">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="21.0" layoutY="157.0" prefHeight="25.0" prefWidth="276.0" />
-                  <TextField layoutX="21.0" layoutY="270.0" prefHeight="25.0" prefWidth="276.0" />
-                  <Label layoutX="20.0" layoutY="226.0" text="Contraseña">
+                  <TextField layoutX="418.0" layoutY="259.0" prefHeight="25.0" prefWidth="276.0" />
+                  <TextField layoutX="420.0" layoutY="406.0" prefHeight="25.0" prefWidth="276.0" />
+                  <Label layoutX="417.0" layoutY="371.0" text="Contraseña">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="37.0" layoutY="21.0" text="Inicio de sesion">
+                  <Label layoutX="356.0" layoutY="97.0" text="Inicio de sesion">
                      <font>
-                        <Font size="36.0" />
+                        <Font size="57.0" />
                      </font>
                   </Label>
-                  <Button layoutX="130.0" layoutY="354.0" mnemonicParsing="false" text="Button">
+                  <Button layoutX="611.0" layoutY="526.0" mnemonicParsing="false" onAction="#iniciosesion" prefHeight="60.0" prefWidth="266.0" text="Iniciar sesion">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="error" contentDisplay="CENTER" layoutX="596.0" layoutY="394.0" prefHeight="21.0" prefWidth="140.0" textFill="RED" />
+                  <Button layoutX="211.0" layoutY="526.0" mnemonicParsing="false" onAction="#inicioadmin" prefHeight="60.0" prefWidth="266.0" text="Menu admistrador">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -42,7 +48,49 @@
          </content></Tab>
     <Tab text="Crear cuenta">
          <content>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9DABB6;">
+               <children>
+                  <AnchorPane prefHeight="772.0" prefWidth="1100.0">
+                     <children>
+                        <Label layoutX="286.0" layoutY="47.0" text="Creacion de cuenta">
+                           <font>
+                              <Font size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="250.0" layoutY="180.0" text="Identificacion">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="252.0" layoutY="215.0" prefHeight="25.0" prefWidth="276.0" />
+                        <Label layoutX="253.0" layoutY="365.0" text="Email">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="252.0" layoutY="400.0" prefHeight="25.0" prefWidth="276.0" />
+                        <Label layoutX="574.0" layoutY="180.0" text="Nombre">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="574.0" layoutY="215.0" prefHeight="25.0" prefWidth="276.0" />
+                        <Label layoutX="575.0" layoutY="364.0" text="Telefono">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="574.0" layoutY="399.0" prefHeight="25.0" prefWidth="276.0" />
+                        <Label layoutX="406.0" layoutY="505.0" text="Direccion">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="405.0" layoutY="540.0" prefHeight="25.0" prefWidth="276.0" />
+                        <Button layoutX="456.0" layoutY="630.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="174.0" text="Crear cuenta" />
+                     </children>
+                  </AnchorPane>
+               </children></Pane>
          </content></Tab>
   </tabs>
 </TabPane>
