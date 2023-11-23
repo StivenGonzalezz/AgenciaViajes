@@ -16,6 +16,9 @@ public class GuiaTuristico extends Persona{
         this.lenguajes = lenguajes;
         this.experiencia = experiencia;
     }
+    public GuiaTuristico() {
+
+    }
 
     //--------------------------MÉTODOS GETTERS AND SETTERS----------------------------
     public int getLenguajes() {
@@ -36,6 +39,9 @@ public class GuiaTuristico extends Persona{
 
     @Override
     public String toString() {
-        return null;
+        return "Id: "+getId()+"\n" +
+                "Nombre: "+getNombre()+"\n" +
+                "Lenguajes en que se comunica: "+this.lenguajes+"\n" +
+                "Experiencia: "+this.experiencia+"\n";
     }
 }

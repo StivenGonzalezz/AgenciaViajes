@@ -9,6 +9,10 @@ public abstract class Persona {
         this.nombre = nombre;
     }
 
+    public Persona(){
+
+    }
+
     //-------------------------------MÉTODOS GETTERS AND SETTERS-----------------------------------
     public int getId() {
         return id;

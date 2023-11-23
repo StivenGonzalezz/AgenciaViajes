@@ -1,0 +1,5 @@
+Destino: milagro
+Ciudad: Armenia
+Descripción: Armenia ciudad milagro
+Clima: CALIDO
+/img/images.jpg

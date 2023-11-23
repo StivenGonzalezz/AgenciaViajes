@@ -5,12 +5,113 @@ import java.util.ArrayList;
 
 public class Serializable {
 
+    //---------------------------------------ADMINISTRADOR---------------------------------------
+    public static void registrarGuia(String nombreArchivo, ArrayList<GuiaTuristico> contenido, boolean adicionar) throws IOException {
+        File archivo = new File(nombreArchivo);
+        FileWriter file = new FileWriter(archivo, adicionar);
+        BufferedWriter buffered = new BufferedWriter(file);
+
+        for (GuiaTuristico linea : contenido) {
+            buffered.write(linea + "\n");
+        }
+
+        buffered.close();
+        file.close();
+    }
+
+    public static void registrarDestino(String nombreArchivo, ArrayList<Destino> contenido, boolean adicionar) throws IOException {
+        File archivo = new File(nombreArchivo);
+        FileWriter file = new FileWriter(archivo, adicionar);
+        BufferedWriter buffered = new BufferedWriter(file);
+
+        for (Destino linea : contenido) {
+            buffered.write(linea + "\n");
+        }
+
+        buffered.close();
+        file.close();
+    }
+
+    public static void registrarPaquetesTuristicos(String nombreArchivo, ArrayList<PaqueteTuristico> contenido, boolean adicionar) throws IOException {
+        File archivo = new File(nombreArchivo);
+        FileWriter file = new FileWriter(archivo, adicionar);
+        BufferedWriter buffered = new BufferedWriter(file);
+
+        for (PaqueteTuristico linea : contenido) {
+            buffered.write(linea + "\n");
+        }
+
+        buffered.close();
+        file.close();
+    }
+    //----------------------------------------------CLIENTE--------------------------------------
+
+    /**
+     * Método que permite almacenar los datos de los clientes registrados.
+     * @param nombreArchivo
+     * @param contenido
+     * @param adicionar
+     * @throws IOException
+     */
+    public static void registrarDatos(String nombreArchivo, ArrayList<Cliente> contenido, boolean adicionar) throws IOException {
+        File archivo = new File(nombreArchivo);
+        FileWriter file = new FileWriter(archivo, adicionar);
+        BufferedWriter buffered = new BufferedWriter(file);
+
+        for (Cliente linea : contenido) {
+            buffered.write(linea + "\n");
+        }
+
+        buffered.close();
+        file.close();
+    }
+
+    public static void actualizarDatos(String nombreArchivo, ArrayList<Cliente> contenido, boolean adicionar) throws IOException {
+        try {
+
+            File archivo = new File(nombreArchivo);
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+
+            // Pedir al usuario la palabra a buscar y la palabra de reemplazo
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print("Ingrese la palabra a buscar: ");
+            String buscar = entrada.readLine();
+            System.out.print("Ingrese la palabra de reemplazo: ");
+            String reemplazar = entrada.readLine();
+
+            // Reemplazar la palabra
+            String linea;
+            String nuevaLinea = "";
+            while ((linea = br.readLine()) != null) {
+                nuevaLinea += linea.replace(buscar, reemplazar) + "\n";
+            }
+
+            // Guardar el resultado en un nuevo archivo
+            FileWriter fw = new FileWriter(nombreArchivo);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(nuevaLinea);
+
+            // Cerrar los archivos
+            br.close();
+            fr.close();
+            bw.close();
+            fw.close();
+
+            System.out.println("El archivo se ha modificado correctamente.");
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+    }
+
     /**
      * Método que permite registrar los datos de una reserva en un archivo llamado Reservas
      * @param nombreArchivo
      * @param contenido
      */
-    public static void registrarDatos(String nombreArchivo, ArrayList<Reserva> contenido, boolean adicionar) throws IOException {
+    public static void registrarReserva(String nombreArchivo, ArrayList<Reserva> contenido, boolean adicionar) throws IOException {
         File archivo = new File(nombreArchivo);
         FileWriter file = new FileWriter(archivo, adicionar);
         BufferedWriter buffered = new BufferedWriter(file);
@@ -23,43 +124,27 @@ public class Serializable {
         file.close();
     }
 
-
-
     /**
      * Método que sirve para mostrar datos
-     * @param nombre_archivo
+     * @param ruta
      * @throws IOException
      */
-    public static void listarDatos(String nombre_archivo) throws IOException {
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
+    public static ArrayList<String> listarDatos(String ruta) throws IOException {
 
-        try {
-            // Apertura del fichero y creacion de BufferedReader para poder hacer una lectura.
-            archivo = new File (nombre_archivo);
-            fr = new FileReader (archivo);
-            br = new BufferedReader(fr);
+        File archivo = new File(ruta);
+        FileReader leer = new FileReader(archivo);
+        BufferedReader br = new BufferedReader(leer);
+        String linea;
+        ArrayList<String> lineas = new ArrayList<>();
 
-            // Lectura del fichero
-            String linea;
-            while((linea=br.readLine())!=null)
-                System.out.println(linea);
+        while ((linea = br.readLine()) != null) {
+            lineas.add(linea);
         }
-        catch(Exception e){
-            e.printStackTrace();
-        }finally{   // En el finally cerramos el fichero.
-            try{
-                if( null != fr ){
-                    fr.close();
-                }
-            }catch (Exception e2){
-                e2.printStackTrace();
-            }
-        }
+
+        br.close();
+        leer.close();
+        return lineas;
     }
-
-
 }
 
      /*

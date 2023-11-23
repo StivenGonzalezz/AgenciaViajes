@@ -1,13 +1,14 @@
 package model;
-import java.awt.*;
+import javax.swing.*;
 
-public class Destino {
+public class Destino extends JFrame {
+    JLabel imagen;
     private String nombre;
     private String ciudad;
     private String descripcion;
-    private enum Clima {CALIDO, TEMPLADO, POLAR};
+    enum Clima {CALIDO, TEMPLADO, POLAR};
     private Clima clima;
-    private Image image;
+    private String image;
 
     /**
      * Constructor
@@ -15,14 +16,30 @@ public class Destino {
      * @param ciudad
      * @param descripcion
      * @param clima
-     * @param image
+     * @param
      */
-    public Destino(String nombre, String ciudad, String descripcion, Clima clima, Image image) {
+    public Destino(String nombre, String ciudad, String descripcion, Clima clima, String image) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.descripcion = descripcion;
         this.clima = clima;
         this.image = image;
+
+        imagen = new JLabel(); //Espacio para colocar la imagen
+        ImageIcon icono = new ImageIcon("img/images.jpg"); //llamamos la imagen
+        imagen.setIcon(icono);
+        imagen.setBounds(15, 40,200, 200);
+
+        add(imagen);
+    }
+
+   public Destino(){
+        imagen = new JLabel(); //Espacio para colocar la imagen
+        ImageIcon icono = new ImageIcon("resources/img/images.jpg"); //llamamos la imagen
+        imagen.setIcon(icono);
+        imagen.setBounds(15, 40,300, 300);
+
+        add(imagen);
     }
 
     public String getNombre() {
@@ -57,11 +74,19 @@ public class Destino {
         this.clima = clima;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString(){
+        return "Destino: "+this.nombre+"\n" +
+                "Ciudad: "+this.ciudad+"\n" +
+                "Descripción: "+this.descripcion+"\n" +
+                "Clima: "+this.clima+"\n"+image;
     }
 }

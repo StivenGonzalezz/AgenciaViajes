@@ -97,13 +97,18 @@ public class PaqueteTuristico {
     //---------------------------------------------MÉTODOS-----------------------------------------
     /**
      * Método que determina la disponibilidad
-     * @param cupo_maximo
+     * @param cupo
      * @param fecha
      * @return
      */
-    public boolean determinarDisponibilidad(int cupo_maximo, Date fecha){
+    public boolean determinarDisponibilidad(int cupo, Date fecha){
 
-        return false;
+        if((cupo<=this.cupo_maximo) && (fecha.equals(this.fecha))){
+            disponible = true;
+        }else {
+            disponible = false;
+        }
+        return disponible;
     }
 
     public void conformarConjuntosDestinos(Destino destino, ArrayList<PaqueteTuristico>paquete){

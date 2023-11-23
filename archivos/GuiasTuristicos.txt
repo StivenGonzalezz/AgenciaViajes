@@ -1,0 +1,5 @@
+Id: 123
+Nombre: yuri
+Lenguajes en que se comunica: 2
+Experiencia: 23.0
+

@@ -1,17 +1,19 @@
 package model;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static model.Serializable.listarDatos;
-import static model.Serializable.registrarDatos;
+import static model.Serializable.*;
 
 public class Cliente extends Persona{
     private String email;
     private String telefono;
     private String direccion;
+    private String contraseña;
     ArrayList<Reserva> reservas = new ArrayList<>();
+    ArrayList<Cliente> clientes = new ArrayList<>();
 
 
     /**
@@ -22,11 +24,16 @@ public class Cliente extends Persona{
      * @param telefono
      * @param direccion
      */
-    public Cliente (int id, String nombre, String email, String telefono, String direccion){
+public Cliente (int id, String nombre, String email, String telefono, String direccion, String contraseña){
         super(id, nombre);
         this.email = email;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.contraseña = contraseña;
+    }
+
+    public Cliente(){
+        super();
     }
 
     //-----------------------------MÉTODOS GETTERS AND SETTERS-----------------------
@@ -55,7 +62,45 @@ public class Cliente extends Persona{
         this.direccion = direccion;
     }
 
-    //-----------------------------MÉTODOS-----------------------------
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+//--------------------------------MÉTODOS-----------------------------
+
+    /**
+     * Método que sirve para registrarse
+     * @param cliente
+     */
+    public void registrarse(Cliente cliente){
+            clientes.add(cliente);
+            try {
+                registrarDatos("archivos\\Clientes.txt", clientes, true);
+            }catch (IOException e){
+                System.out.println(e.getMessage());
+            }
+            System.out.println("Registrado éxitosamente");
+    }
+
+    public void modificarPerfil(Cliente cliente){
+
+        if (getId() == cliente.getId()){
+            try {
+                actualizarDatos("archivos\\Clientes.txt", clientes, true);
+            }catch (IOException e){
+                System.out.println(e.getMessage());
+            }
+            System.out.println("Actualizado éxitosamente");
+        }
+
+
+
+    }
+
 
     /**
      * Método que permite crear una reserva
@@ -85,7 +130,7 @@ public class Cliente extends Persona{
 
         reservas.add(reserva);
         try {
-            registrarDatos("archivos\\Reservas.txt", reservas, true);
+            registrarReserva("archivos\\Reservas.txt", reservas, true);
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
@@ -97,27 +142,14 @@ public class Cliente extends Persona{
      * @throws IOException
      */
     public void listarReserva() throws IOException{
-        System.out.println("\t LISTADO DE RESERVAS");
-        listarDatos("archivos\\Reservas.txt");
-
-    }
-
-    public void crearReservas(LocalDate fecha_solicitud, LocalDate fecha_viaje){
-
-        int id_reserva = (int) Math.random()*1000+100; //Genera número aleatorio para el id de la reserva
-
-        Reserva reserva = new Reserva();
-
-        reserva.setId(id_reserva);
-        reserva.setFecha_solicitud(fecha_solicitud);
-        reserva.setFecha_viaje(fecha_viaje);
-        reservas.add(reserva);
-        try {
-            registrarDatos("archivos\\Reservas.txt", reservas, true);
+        try{
+            System.out.println("\t LISTADO DE RESERVAS");
+            ArrayList<String>salida = listarDatos("archivos\\Reservas.txt");
+            System.out.println(salida.toString()+"\n");
         }catch (IOException e){
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        System.out.println("Reservado éxitosamente, su código de reserva es "+id_reserva);
+
     }
 
     /**
@@ -138,10 +170,11 @@ public class Cliente extends Persona{
 
     @Override
     public String toString(){
-        return  "Id: "+getId()+"\n"+
+        return  "\nId: "+getId()+"\n"+
                 "Nombre: "+getNombre()+"\n"+
                 "Email: "+this.email+"\n" +
                 "Telefono: "+this.telefono+"\n" +
-                "Dirección: "+this.direccion;
+                "Dirección: "+this.direccion+"\n" +
+                "Contraseña: "+this.contraseña+"\n";
     }
 }

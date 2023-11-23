@@ -1,0 +1,15 @@
+Id: 234
+Nombre: yuri
+Email: yarr
+Telefono: 1234
+Dirección: bajo
+Contraseña: admin
+
+
+Id: 123
+Nombre: yuri
+Email: yarr
+Telefono: 1234
+Dirección: bajo
+Contraseña: admin
+
